@@ -1,4 +1,4 @@
-package proyecto.reto_tecnicosofka;
+package proyecto.reto_tecnicosofka.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

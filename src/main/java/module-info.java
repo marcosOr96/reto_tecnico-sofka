@@ -5,4 +5,6 @@ module proyecto.reto_tecnicosofka {
 
     opens proyecto.reto_tecnicosofka to javafx.fxml;
     exports proyecto.reto_tecnicosofka;
+    exports proyecto.reto_tecnicosofka.controller;
+    opens proyecto.reto_tecnicosofka.controller to javafx.fxml;
 }
