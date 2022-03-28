@@ -1,5 +1,6 @@
 package proyecto.reto_tecnicosofka.controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import proyecto.reto_tecnicosofka.facade.Juego;
 import proyecto.reto_tecnicosofka.models.Jugador;
+import proyecto.reto_tecnicosofka.models.Ronda;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,7 +33,6 @@ public class JuegoController implements Initializable {
     @FXML private TextField opcionCTextField;
     @FXML private TextField opcionDTextField;
     @FXML private TextField eleccionPreguntaTextField;
-    @FXML private TextField eleccionRespuestaTextField;
 
     @FXML private Button agregarButton;
     @FXML private Button agregarDatosButton;
@@ -49,6 +50,9 @@ public class JuegoController implements Initializable {
     @FXML private ComboBox<Boolean> correctaCComboBox;
     @FXML private ComboBox<Boolean> correctaDComboBox;
     @FXML private ComboBox<Integer> idRondaComboBox;
+    @FXML private ComboBox<String> eleccionRespuestaComboBox;
+
+    public Juego juego = new Juego();
 
     ObservableList<Boolean> comboCorrectaContent =
             FXCollections.observableArrayList(
@@ -74,28 +78,80 @@ public class JuegoController implements Initializable {
         idRondaComboBox.setItems(comboIdRondaContent);
     }
 
-    public void onIngrezarPreguntasOpcionesClick(MouseEvent event) {
-        jugadorAnchorPane.setVisible(false);
+    public void onIngresarPreguntasOpcionesClick(MouseEvent event) {
         insercionDatosAnchorPane.setVisible(true);
-        resultadosAnchorPane.setVisible(false);
-        rondaAnchorPane.setVisible(false);
-    }
-
-    public void onAgregarDatosClick(MouseEvent event) {
         jugadorAnchorPane.setVisible(false);
-        insercionDatosAnchorPane.setVisible(false);
         resultadosAnchorPane.setVisible(false);
         rondaAnchorPane.setVisible(false);
     }
 
-    public void onAgregarDatosClick (ActionEvent event) {
+    public void onElegirPreguntaYRespuestaClick(MouseEvent event) {
+        if (Integer.parseInt(rondaText.getText()) <= 5) {
+            rondaAnchorPane.setVisible(true);
+            jugadorAnchorPane.setVisible(false);
+            insercionDatosAnchorPane.setVisible(false);
+            resultadosAnchorPane.setVisible(false);
+        }
+    }
+
+    public void onAgregarDatosAction(ActionEvent event) {
         String opcionRespuesta = opcionATextField.getText();
         Boolean correcta1 = correctaAComboBox.getValue();
-        Juego juego= new Juego();
-        juego.configurarJuego(nombreTextField.getText(),Integer.parseInt(edadTextField.getText()));
-        juego.crearPreguntas(preguntaTextField.getText(),idRondaComboBox.getValue(),
+        juego.configurarJuego(nombreTextField.getText(), Integer.parseInt(edadTextField.getText()));
+        juego.crearPreguntas(preguntaTextField.getText(), idRondaComboBox.getValue(),
                 opcionATextField.getText(), opcionBTextField.getText(), opcionCTextField.getText(),
                 opcionDTextField.getText(), correctaAComboBox.getValue(), correctaBComboBox.getValue(),
                 correctaCComboBox.getValue(), correctaDComboBox.getValue());
+
+        ObservableList<String> comboPreguntasContent =
+                FXCollections.observableArrayList(
+                );
+
+        ObservableList<String> comboRespuestaContent =
+                FXCollections.observableArrayList(
+                );
+
+        for (Ronda r : juego.getRondas()) {
+            if (juego.getRondas().size() == idRondaComboBox.getValue()) {
+                comboPreguntasContent.addAll(preguntaTextField.getText());
+
+                eleccionRespuestaComboBox.setDisable(false);
+
+                comboRespuestaContent.addAll(opcionATextField.getText(), opcionBTextField.getText(),
+                        opcionCTextField.getText(), opcionDTextField.getText());
+                eleccionRespuestaComboBox.getItems().addAll(comboRespuestaContent);
+            }
+        }
+    }
+
+    public void onIniciarAction(ActionEvent event) {
+        juego.iniciarJuego();
+        rondaText.setText(String.valueOf(0));
+    }
+
+    public void onResponderAction(ActionEvent event) {
+        juego.responderPregunta(Integer.parseInt(rondaText.getText()));
+        juego.acomularPremios(Integer.parseInt(rondaText.getText()));
+
+    }
+
+    public void onAumentarRondaAction(ActionEvent event) {
+        juego.aumentarNivel(Integer.parseInt(rondaText.getText()));
+    }
+
+    public void onFinalizarVoluntaramenteAction(ActionEvent event) {
+        juego.acomularPremios(Integer.parseInt(rondaText.getText()));
+    }
+
+    public void onFinalizarForzosamenteAction(ActionEvent event) {
+        Platform.exit();
+        System.exit(0);
+    }
+
+    public void onListarRankinVictoriasClick(MouseEvent event) {
+        juego.acomularPremios(Integer.parseInt(rondaText.getText()));
+        juego.getJugadores().add(new Jugador(nombreTextField.getText(),
+                Integer.parseInt(edadTextField.getText()),
+                juego.acomularPremios(Integer.parseInt(rondaText.getText()))));
     }
 }

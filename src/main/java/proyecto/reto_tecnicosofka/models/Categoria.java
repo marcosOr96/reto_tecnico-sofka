@@ -35,7 +35,6 @@ public class Categoria {
     public void crearPreguntas(String descripcionPregunta){
         preguntas.add(new Pregunta(descripcionPregunta));
     }
-
     public Pregunta elegirPregunta() {
         Pregunta preguntaElegida = preguntas.get(new Random().nextInt(preguntas.size()));
         return preguntaElegida;

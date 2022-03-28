@@ -57,7 +57,7 @@ public class Juego {
     }
 
     public void responderPregunta(int posicion) {
-        rondas.get(posicion).getCategoria().getPreguntas().get(1).elegirRespuesta();
+        rondas.get(posicion).getCategoria().getPreguntas().get(posicion).elegirRespuesta();
     }
 
     public void aumentarNivel(int posicion) {
@@ -68,7 +68,7 @@ public class Juego {
         }
     }
 
-    public int acomularPremios(int posicion, int jugadorNumero){
+    public int acomularPremios(int posicion){
         int acomulado = 0;
         if (rondas.get(posicion).getCategoria().elegirPregunta().elegirRespuesta()) {
             for (int i = 0; i < posicion; i++) {
