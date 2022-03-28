@@ -1,5 +1,8 @@
 package proyecto.reto_tecnicosofka.models;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class Ronda {
 
     private Categoria categoria;
@@ -7,6 +10,12 @@ public class Ronda {
 
     public Ronda() {
     }
+
+    public Ronda(int nivelCategoria) {
+
+        this.categoria=new Categoria(nivelCategoria);
+    }
+
 
     public Categoria getCategoria() {
         return categoria;
@@ -24,9 +33,23 @@ public class Ronda {
         this.premio = premio;
     }
 
+    public boolean preguntarPermanencia(){
+        System.out.println("Desea continuar y responder la siguiente pregunta?");
+        Scanner sc = new Scanner(System.in);
+        boolean consulta = true;
+
+        if (sc.equals("si")) {
+            consulta = true;
+        }
+        if (sc.equals("no")){
+            consulta = false;
+        }
+        return consulta;
+    }
+
     @Override
     public String toString() {
-        return "categoria= " + categoria +
+        return " categoria= " + categoria +
                 " premio= " + premio;
     }
 }

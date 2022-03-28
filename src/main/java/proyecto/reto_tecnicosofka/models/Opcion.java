@@ -2,23 +2,23 @@ package proyecto.reto_tecnicosofka.models;
 
 public class Opcion {
 
-    private String despcionOpcion;
+    private String descripcionOpcion;
     private boolean correcta;
 
     public Opcion() {
     }
 
-    public Opcion(String despcionOpcion, boolean correcta) {
-        this.despcionOpcion = despcionOpcion;
+    public Opcion(String descripcionOpcion, boolean correcta) {
+        this.descripcionOpcion = descripcionOpcion;
         this.correcta = correcta;
     }
 
-    public String getDespcionOpcion() {
-        return despcionOpcion;
+    public String getDescripcionOpcion() {
+        return descripcionOpcion;
     }
 
-    public void setDespcionOpcion(String despcionOpcion) {
-        this.despcionOpcion = despcionOpcion;
+    public void setDescripcionOpcion(String descripcionOpcion) {
+        this.descripcionOpcion = descripcionOpcion;
     }
 
     public boolean isCorrecta() {
@@ -31,7 +31,7 @@ public class Opcion {
 
     @Override
     public String toString() {
-        return "despcionOpcion=" + despcionOpcion +
+        return "despcionOpcion=" + descripcionOpcion +
                 " correcta=" + correcta;
     }
 }

@@ -1,6 +1,8 @@
 package proyecto.reto_tecnicosofka.models;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Pregunta {
 
@@ -8,17 +10,18 @@ public class Pregunta {
     private List<Opcion> opciones;
 
     public Pregunta() {
+        this.opciones = new ArrayList<>();
     }
 
     public Pregunta(String descripcionPregunta) {
         this.descripcionPregunta = descripcionPregunta;
     }
 
-    public String getDescripcion() {
+    public String getDescripcionPregunta() {
         return descripcionPregunta;
     }
 
-    public void setDescripcion(String descripcionPregunta) {
+    public void setDescripcionPregunta(String descripcionPregunta) {
         this.descripcionPregunta = descripcionPregunta;
     }
 
@@ -28,6 +31,15 @@ public class Pregunta {
 
     public void setOpciones(List<Opcion> opciones) {
         this.opciones = opciones;
+    }
+
+    public void crearOpcionesDePreguntas(String descripcionOpcion,boolean correcta){
+        this.opciones.add(new Opcion(descripcionOpcion,correcta));
+    }
+
+    public boolean elegirRespuesta(){
+        Opcion opcionElegida = opciones.get(new Random().nextInt());
+        return opcionElegida.isCorrecta();
     }
 
     @Override

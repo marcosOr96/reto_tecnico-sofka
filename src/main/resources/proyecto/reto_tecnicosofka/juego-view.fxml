@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="jugadorAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #080824;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <Label layoutX="44.0" layoutY="49.0" text="Nombre Jugador :" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="44.0" layoutY="102.0" text="Edad :" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="44.0" layoutY="155.0" text="Premio Acomulado :" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="44.0" layoutY="203.0" text="Rondas Completadas :" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nombreTextField" layoutX="255.0" layoutY="47.0" promptText="nombre" />
+            <TextField fx:id="edadTextField" layoutX="255.0" layoutY="100.0" promptText="edad" />
+            <TextField fx:id="acomuladoTextField" editable="false" layoutX="255.0" layoutY="153.0" promptText="acomulado" />
+            <TextField fx:id="victoriasTextField" layoutX="255.0" layoutY="201.0" promptText="rondas ganadas" />
+            <Button fx:id="agragarButton" layoutX="355.0" layoutY="263.0" mnemonicParsing="false" onMouseClicked="#onIngrezarPreguntasOpcionesClick" style="-fx-background-color: #52525c;" text="AGREGAR PREGUNTAS Y OPCIONES">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #2e2e33;" AnchorPane.bottomAnchor="334.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="iniciarJuegoButton" layoutX="489.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-color: #65656e;" text="INICIAR JUEGO">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="InsercionDatosAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #080824;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <Label layoutX="29.0" layoutY="69.0" text="Pregunta :" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="155.0" text="A )" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="197.0" text="b )" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="240.0" text="c )" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="281.0" text="D )" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="preguntaTextField" layoutX="113.0" layoutY="67.0" prefHeight="25.0" prefWidth="320.0" promptText="Enunciado" />
+            <TextField fx:id="opcionATextField" layoutX="63.0" layoutY="153.0" prefHeight="25.0" prefWidth="285.0" promptText="Opcion 1" />
+            <TextField fx:id="opcionBTextField" layoutX="63.0" layoutY="195.0" prefHeight="25.0" prefWidth="285.0" promptText="Opcion 2" />
+            <TextField fx:id="opcionCTextField" layoutX="63.0" layoutY="241.0" prefHeight="25.0" prefWidth="285.0" promptText="Opcion 3" />
+            <TextField fx:id="opcionDTextField" layoutX="63.0" layoutY="279.0" prefHeight="25.0" prefWidth="285.0" promptText="Opcion 4" />
+            <Button fx:id="agregarOpcionesButton" layoutX="464.0" layoutY="218.0" mnemonicParsing="false" onAction="#onAgregarDatosAction" onMouseClicked="#onAgregarDatosClick" style="-fx-background-color: #52525c;" text="AGREGAR DATOS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="232.0" layoutY="22.0" text="Insertar Pregunta" textFill="#bcb1b1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Separator layoutX="14.0" layoutY="34.0" prefWidth="200.0" />
+            <Separator layoutX="386.0" layoutY="36.0" prefWidth="200.0" />
+            <Label layoutX="175.0" layoutY="105.0" text="Insertar Opciones de Respuesta" textFill="#bcb1b1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Separator layoutX="14.0" layoutY="119.0" prefHeight="3.0" prefWidth="148.0" />
+            <Separator layoutX="438.0" layoutY="121.0" prefHeight="3.0" prefWidth="148.0" />
+            <ComboBox fx:id="correctaAComboBox" layoutX="359.0" layoutY="153.0" prefHeight="25.0" prefWidth="88.0" />
+            <ComboBox fx:id="correctaBComboBox" layoutX="359.0" layoutY="195.0" prefHeight="25.0" prefWidth="88.0" />
+            <ComboBox fx:id="correctaCComboBox" layoutX="359.0" layoutY="241.0" prefHeight="25.0" prefWidth="88.0" />
+            <ComboBox fx:id="correctaDComboBox" layoutX="359.0" layoutY="279.0" prefHeight="25.0" prefWidth="88.0" />
+            <ComboBox fx:id="idRondaComboBox" layoutX="464.0" layoutY="153.0" prefHeight="25.0" prefWidth="116.0" promptText="idRonda" style="-fx-background-color: #52525c;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="rondaAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #080824;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <Label layoutX="40.0" layoutY="79.0" text="Elegir Pregunta :" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="144.0" text="Desea continuar y responder la pregunta?" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="252.0" text="Respuesta :" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="438.0" layoutY="24.0" text="Ronda N°" textFill="#eee7e7">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Text fx:id="rondaText" fill="WHITE" layoutX="533.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="41.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Separator layoutX="29.0" layoutY="34.0" prefHeight="3.0" prefWidth="377.0" />
+            <ComboBox fx:id="eleccionPreguntaComboBox" layoutX="200.0" layoutY="77.0" prefWidth="150.0" promptText="preguntas" />
+            <ComboBox fx:id="eleccionRespuestaComboBox" layoutX="200.0" layoutY="250.0" prefWidth="150.0" promptText="opciones" />
+            <CheckBox fx:id="siResponderCheckBox" layoutX="350.0" layoutY="145.0" mnemonicParsing="false" text="si" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="noResponderCheckBox" layoutX="421.0" layoutY="145.0" mnemonicParsing="false" text="no" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <Separator layoutX="29.0" layoutY="205.0" prefHeight="3.0" prefWidth="543.0" />
+            <Separator layoutX="29.0" layoutY="208.0" prefHeight="3.0" prefWidth="543.0" />
+            <Button fx:id="confirmarEleccionComboBox" layoutX="442.0" layoutY="250.0" mnemonicParsing="false" style="-fx-background-color: #52525c;" text="CONFIRMAR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="resultadosAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #080824;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <TextArea fx:id="rankingVictoriasTextArea" layoutX="357.0" layoutY="47.0" prefHeight="239.0" prefWidth="200.0" />
+            <Label layoutX="26.0" layoutY="148.0" text="¡¡ RANKING DE PREMIOS !!" textFill="#0f76dd">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
