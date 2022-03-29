@@ -48,6 +48,10 @@ public class Jugador {
         this.ronda = ronda;
     }
 
+    public void asignarRonda(Ronda ronda){
+        this.ronda = ronda;
+    }
+
     @Override
     public String toString() {
         return "nombre: " + nombre + ", " +

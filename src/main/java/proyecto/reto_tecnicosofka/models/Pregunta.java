@@ -10,11 +10,11 @@ public class Pregunta {
     private List<Opcion> opciones;
 
     public Pregunta() {
-        this.opciones = new ArrayList<>();
     }
 
     public Pregunta(String descripcionPregunta) {
         this.descripcionPregunta = descripcionPregunta;
+        this.opciones = new ArrayList<>();
     }
 
     public String getDescripcionPregunta() {
@@ -37,9 +37,16 @@ public class Pregunta {
         this.opciones.add(new Opcion(descripcionOpcion,correcta));
     }
 
-    public boolean elegirRespuesta(){
-        Opcion opcionElegida = opciones.get(new Random().nextInt());
-        return opcionElegida.isCorrecta();
+    public boolean elegirRespuesta(String descripcion) {
+        for (Opcion opcion : opciones) {
+            if (descripcion.equals(opcion.getDescripcionOpcion())){
+                if (opcion.isCorrecta()==true){
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
     }
 
     @Override

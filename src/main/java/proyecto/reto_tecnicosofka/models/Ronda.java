@@ -11,9 +11,10 @@ public class Ronda {
     public Ronda() {
     }
 
-    public Ronda(int nivelCategoria) {
+    public Ronda(int nivelCategoria, int cantidadPremio) {
 
         this.categoria=new Categoria(nivelCategoria);
+        this.premio=new Premio(cantidadPremio);
     }
 
 

@@ -13,30 +13,18 @@
    <children>
       <AnchorPane fx:id="jugadorAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #080824;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
-            <Label layoutX="44.0" layoutY="49.0" text="Nombre Jugador :" textFill="WHITE">
+            <Label layoutX="44.0" layoutY="113.0" text="Nombre Jugador :" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="44.0" layoutY="102.0" text="Edad :" textFill="WHITE">
+            <Label layoutX="44.0" layoutY="181.0" text="Edad :" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="44.0" layoutY="155.0" text="Premio Acomulado :" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="44.0" layoutY="203.0" text="Rondas Completadas :" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="nombreTextField" layoutX="255.0" layoutY="47.0" promptText="nombre" />
-            <TextField fx:id="edadTextField" layoutX="255.0" layoutY="100.0" promptText="edad" />
-            <TextField fx:id="acomuladoTextField" disable="true" editable="false" layoutX="255.0" layoutY="153.0" promptText="acomulado" />
-            <TextField fx:id="victoriasTextField" disable="true" layoutX="255.0" layoutY="201.0" promptText="rondas ganadas" />
+            <TextField fx:id="nombreTextField" layoutX="255.0" layoutY="111.0" promptText="nombre" />
+            <TextField fx:id="edadTextField" layoutX="255.0" layoutY="179.0" promptText="edad" />
             <Button fx:id="agragarButton" layoutX="355.0" layoutY="263.0" mnemonicParsing="false" onMouseClicked="#onIngresarPreguntasOpcionesClick" style="-fx-background-color: #52525c;" text="AGREGAR PREGUNTAS Y OPCIONES">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -139,24 +127,19 @@
             </Text>
             <Separator layoutX="29.0" layoutY="34.0" prefHeight="3.0" prefWidth="377.0" />
             <ComboBox fx:id="eleccionRespuestaComboBox" layoutX="200.0" layoutY="250.0" prefWidth="150.0" promptText="opciones" />
-            <CheckBox fx:id="siResponderCheckBox" layoutX="350.0" layoutY="145.0" mnemonicParsing="false" onAction="#onFinalizarVoluntaramenteAction" text="si" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </CheckBox>
-            <CheckBox fx:id="noResponderCheckBox" layoutX="421.0" layoutY="145.0" mnemonicParsing="false" onAction="#onFinalizarForzosamenteAction" text="no" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </CheckBox>
             <Separator layoutX="29.0" layoutY="205.0" prefHeight="3.0" prefWidth="543.0" />
             <Separator layoutX="29.0" layoutY="208.0" prefHeight="3.0" prefWidth="543.0" />
-            <Button fx:id="confirmarEleccionComboBox" layoutX="442.0" layoutY="250.0" mnemonicParsing="false" onAction="#onResponderAction" style="-fx-background-color: #52525c;" text="CONFIRMAR">
+            <Button fx:id="confirmarEleccionButton" layoutX="442.0" layoutY="250.0" mnemonicParsing="false" onAction="#onResponderAction" style="-fx-background-color: #52525c;" text="CONFIRMAR">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
             <TextField fx:id="eleccionPreguntaTextField" layoutX="160.0" layoutY="77.0" prefHeight="25.0" prefWidth="396.0" />
+            <Button fx:id="salirButton" layoutX="442.0" layoutY="142.0" mnemonicParsing="false" onAction="#onFinalizarVoluntaramenteAction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #52525c;" text="SALIR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="resultadosAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #080824;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
@@ -167,6 +150,11 @@
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
+            <Button layoutX="127.0" layoutY="224.0" mnemonicParsing="false" onMouseClicked="#onVolverInsertarJugadorClick" style="-fx-background-color: #65656e;" text="VOLVER JUGAR">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

@@ -1,6 +1,8 @@
 package proyecto.reto_tecnicosofka.facade;
 
 import proyecto.reto_tecnicosofka.models.Jugador;
+import proyecto.reto_tecnicosofka.models.Opcion;
+import proyecto.reto_tecnicosofka.models.Pregunta;
 import proyecto.reto_tecnicosofka.models.Ronda;
 
 import java.util.ArrayList;
@@ -32,13 +34,19 @@ public class Juego {
         this.rondas = rondas;
     }
 
-    public void configurarJuego(String nombre, int edad){
-        this.jugadores.add(new Jugador(nombre,edad,0));
-        rondas.add(new Ronda(0));
-        rondas.add(new Ronda(1));
-        rondas.add(new Ronda(2));
-        rondas.add(new Ronda(3));
-        rondas.add(new Ronda(4));
+    public void configurarJuego(){
+        rondas.add(new Ronda(0,10));
+        rondas.add(new Ronda(1,15));
+        rondas.add(new Ronda(2,30));
+        rondas.add(new Ronda(3,50));
+        rondas.add(new Ronda(4,100));
+    }
+
+    public Jugador crearJugador(String nombre, int edad){
+        Jugador jugador=new Jugador(nombre,edad,0);
+        jugador.asignarRonda(rondas.get(0));
+        jugadores.add(jugador);
+        return jugador;
     }
 
     public void crearPreguntas(String descripcionPregunta,Integer nivel,
@@ -47,35 +55,50 @@ public class Juego {
                                Boolean correcto3, Boolean correcto4){
         for (Ronda rango:this.rondas) {
            if ( rango.getCategoria().getNivel()==nivel){
-               rango.getCategoria().crearPreguntas(descripcionPregunta);
+               rango.getCategoria().crearPreguntas(descripcionPregunta, descripcionOpcion1,
+                       descripcionOpcion2, descripcionOpcion3, descripcionOpcion4, correcto1, correcto2,
+                       correcto3, correcto4);
            }
         }
     }
 
-    public void iniciarJuego(){
-        rondas.get(0).getCategoria().elegirPregunta();
+    public Pregunta iniciarJuego(){
+        return rondas.get(0).getCategoria().elegirPregunta();
     }
 
-    public void responderPregunta(int posicion) {
-        rondas.get(posicion).getCategoria().getPreguntas().get(posicion).elegirRespuesta();
+    public Pregunta continuarJuego(int nivel){
+        return rondas.get(nivel).getCategoria().elegirPregunta();
     }
 
-    public void aumentarNivel(int posicion) {
-        if (rondas.get(posicion).getCategoria().elegirPregunta().elegirRespuesta()) {
-            posicion = posicion + 1;
-            rondas.get(posicion).getCategoria().elegirPregunta();
-            rondas.get(posicion).getCategoria().getPreguntas().get(1).elegirRespuesta();
-        }
+    public boolean responderPregunta(int ronda, String descripcion) {
+        return rondas.get(ronda).getCategoria().getPreguntas().get(ronda).elegirRespuesta(descripcion);
     }
 
-    public int acomularPremios(int posicion){
-        int acomulado = 0;
-        if (rondas.get(posicion).getCategoria().elegirPregunta().elegirRespuesta()) {
-            for (int i = 0; i < posicion; i++) {
-                acomulado = acomulado + rondas.get(i).getPremio().getCantPuntos();
+    public String validarCantidadDePreguntas() {
+        String mensaje="";
+        for (Ronda r:rondas) {
+            String respuesta=r.getCategoria().validarCantidadDePreguntas();
+            if (!respuesta.equalsIgnoreCase("")){
+                mensaje+=respuesta;
+                mensaje+="\n";
             }
-            return acomulado;
         }
-        return acomulado;
+        return mensaje;
     }
+
+    public int aumentarNivel(int ronda, String descripcion) {
+        int nivelActual = rondas.get(ronda).getCategoria().getNivel();
+        if (responderPregunta(ronda,descripcion)) {
+            nivelActual = nivelActual + 1;
+            return nivelActual;
+        }
+        return 0;
+    }
+
+    public void aumentarNivelCategoria(Jugador jugador) {
+        if (jugador.getRonda().getCategoria().getNivel() < 4) {
+            jugador.asignarRonda(rondas.get(jugador.getRonda().getCategoria().getNivel() + 1));
+        }
+    }
+
 }
