@@ -73,5 +73,5 @@ Proyecto desarrollado por:
 ***
 ### UML
 
-![alt text](https://github.com/marcosOr96/reto_tecnico-sofka/UML.png)
+![alt text](https://github.com/marcosOr96/-/raw/master/reto_tecnico-sofka/UML.png)
 ***
